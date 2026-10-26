@@ -1,0 +1,31 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, "Segoe UI", Roboto, sans-serif; background: #0f1420; color: #e8ecf4; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 64px; }
+header h1 { margin: 8px 0 2px; font-size: 34px; }
+header p { color: #9fb0cc; margin: 0 0 20px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+.card { background: #182136; border: 1px solid #263354; border-radius: 12px; padding: 16px; }
+.card h2 { margin: 0 0 10px; font-size: 18px; }
+.card.full { grid-column: 1 / -1; }
+.row { display: flex; gap: 8px; }
+input[type="text"], input[type="number"] { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #33477a; background: #0f1420; color: #e8ecf4; }
+button { padding: 10px 16px; border: 0; border-radius: 8px; background: #3b82f6; color: white; font-weight: 600; cursor: pointer; }
+button.danger { background: #b3372f; }
+button:disabled { opacity: 0.5; cursor: default; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.chip { font-size: 12px; padding: 5px 9px; border-radius: 999px; background: #22304f; color: #bcd; border: 1px solid #33477a; cursor: pointer; }
+.answer { margin-top: 14px; background: #0f2c1e; border: 1px solid #1f5c3d; border-radius: 10px; padding: 12px; }
+.answer.miss { background: #2c230f; border-color: #5c4a1f; }
+.answer .meta { color: #a7c4b5; font-size: 13px; margin-top: 6px; }
+.ev { font-size: 13px; color: #cfe3ff; background: #111a2e; border-radius: 8px; padding: 10px; margin-top: 8px; }
+ul.timeline { list-style: none; margin: 0; padding: 0; max-height: 380px; overflow: auto; }
+ul.timeline li { padding: 8px 0; border-bottom: 1px solid #22304f; font-size: 14px; }
+ul.timeline .t { color: #7ea2e8; font-variant-numeric: tabular-nums; margin-right: 8px; }
+.status { display: inline-block; min-width: 62px; text-align: center; font-size: 12px; font-weight: 700; border-radius: 6px; padding: 2px 6px; margin-right: 8px; }
+.status.ok { background: #14532d; color: #bbf7d0; }
+.status.pending { background: #574a15; color: #fde68a; }
+.status.alert { background: #5f1d1d; color: #fecaca; }
+.alertbox { margin-top: 10px; background: #5f1d1d; border-radius: 8px; padding: 10px; font-size: 14px; }
+.clearbox { margin-top: 10px; background: #14532d; border-radius: 8px; padding: 10px; font-size: 14px; }
+.small { color: #9fb0cc; font-size: 13px; }

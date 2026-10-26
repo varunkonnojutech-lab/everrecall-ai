@@ -1,0 +1,18 @@
+@host = http://localhost:8080
+
+GET {{host}}/api/health
+
+### Ask your memory
+POST {{host}}/api/ask
+Content-Type: application/json
+
+{ "question": "Where are my keys?" }
+
+### Guardian status
+GET {{host}}/api/guardian/status
+
+### Forget the last hour (privacy)
+POST {{host}}/api/memory/forget
+Content-Type: application/json
+
+{ "minutes": 60 }

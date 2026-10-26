@@ -1,0 +1,41 @@
+# One-command run:  docker compose up --build
+#   Web app:   http://localhost:3000
+#   API:       http://localhost:8080  (Swagger at /swagger in Development)
+#
+# No keys needed: the simulated Meta providers are the default.
+# To use the real Meta Model API later, copy .env.example to .env, set
+# MetaModelApi__ApiKey, and recreate the api service.
+services:
+  api:
+    build:
+      context: .
+      dockerfile: src/EverRecall.Api/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Development}
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: "Data Source=/app/data/everrecall.db"
+      MetaModelApi__ApiKey: ${MetaModelApi__ApiKey:-}
+      MetaModelApi__BaseUrl: ${MetaModelApi__BaseUrl:-https://api.meta.com/v1}
+    ports:
+      - "8080:8080"
+    volumes:
+      - api-data:/app/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8080/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 15s
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  api-data:
